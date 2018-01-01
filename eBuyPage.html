@@ -1,0 +1,99 @@
+<br />
+<br />
+<div ng-app="myApp">
+    <div ng-controller="TableCtrl">
+        <div class="input-group">
+            <input class="form-control" ng-model="searchText" placeholder="Search" type="search" ng-change="search()" /> <span class="input-group-addon">
+      <span class="glyphicon glyphicon-search"></span>
+</span>
+        </div>
+        <table class="table  table-hover data-table myTable">
+            <thead>
+                <tr>
+                    <th class="TxnId"> <a href="#" ng-click="sort('TxnId',$event)">TxnId
+                         <span class="{{Header[0]}}"></span>
+                         </a>
+
+                    </th>
+                    <th class="UserName"> <a ng-click="sort('UserName')" href="#">UserName
+                         <span class="{{Header[1]}}"></span></a>
+                    </th>
+                    <th class="ProductZone"> <a ng-click="sort('ProductZone')" href="#">ProductZone
+                     <span class="{{Header[2]}}"></span></a>
+                    </th>
+		   <th class="Product"> <a ng-click="sort('Product')" href="#">Product
+                     <span class="{{Header[3]}}"></span></a>
+                    </th>
+		    <th class="Model"> <a ng-click="sort('Model')" href="#">Model
+                     <span class="{{Header[4]}}"></span></a>
+                    </th>
+		   <th class="DateTime"> <a ng-click="sort('DateTime')" href="#">DateTime
+                     <span class="{{Header[5]}}"></span></a>
+                    </th>
+		   <th class="Quantity"> <a ng-click="sort('Quantity')" href="#">Quantity
+                     <span class="{{Header[6]}}"></span></a>
+                    </th>
+		   <th class="Amount"> <a ng-click="sort('Amount')" href="#">Amount
+                     <span class="{{Header[7]}}"></span></a>
+                    </th>	
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in ItemsByPage[currentPage] | orderBy:columnToOrder:reverse">
+                    <td>{{item.TxnId}}</td>
+                    <td>{{item.UserName}}</td>
+                    <td>{{item.ProductZone}}</td>
+		    <td>{{item.Product}}</td>
+                    <td>{{item.Model}}</td>
+                    <td>{{item.DateTime}}</td>
+		   <td>{{item.Quantity}}</td>
+		   <td>{{item.Amount}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <ul class="pagination pagination-sm">
+            <li ng-class="{active:0}"><a href="#" ng-click="firstPage()">First</a>
+
+            </li>
+            <li ng-repeat="n in range(ItemsByPage.length)"> <a href="#" ng-click="setPage()" ng-bind="n+1">1</a>
+
+            </li>
+            <li><a href="#" ng-click="lastPage()">Last</a>
+
+            </li>
+        </ul>
+        <div class="row">
+            <div class="col-xs-3">
+                <input type="text" ng-model="newTxnId" class="form-control" placeholder="TxnId">
+            </div>
+            <div class="col-xs-3">
+                <input type="text" ng-model="newUserName" class="form-control" placeholder="UserName">
+            </div>
+            <div class="col-xs-4">
+                <input type="text" ng-model="newProductZone" class="form-control" placeholder="ProductZone">
+            </div>
+	    <div class="col-xs-3">
+                <input type="text" ng-model="newProduct" class="form-control" placeholder="Product">
+            </div>
+	    <div class="col-xs-4">
+                <input type="email" ng-model="newModel" class="form-control" placeholder="Model">
+            </div>
+            <div class="col-xs-3">
+                <input type="text" ng-model="newDateTime" class="form-control" placeholder="DateTime">
+            </div>
+           
+	    <div class="col-xs-3">
+                <input type="text" ng-model="newQuantity" class="form-control" placeholder="Quantity">
+            </div>
+            <div class="col-xs-3">
+                <input type="text" ng-model="newAmount" class="form-control" placeholder="Amount">
+            </div>
+            <div class="col-xs-1">
+                <button ng-click="add()" type="button" class="btn btn-primary"> <span class="glyphicon glyphicon-plus"></span>
+
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- Ends Controller -->
+</div>
